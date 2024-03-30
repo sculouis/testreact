@@ -1,12 +1,13 @@
 // NavItem.js
 import React from 'react';
 
-const NavItem = ({ href, children, onClick }) => (
-  <li className="nav-item">
-    <a href={href} className="nav-link" onClick={onClick}>
-      {children}
+const NavItem = ({ href, text, onClick }) => 
+  {
+  return (
+    <a href={href} onClick={onClick} className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">
+      {text}
     </a>
-  </li>
-);
+  )
+  };
 
 export default NavItem;

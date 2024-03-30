@@ -1,13 +1,34 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { usePostComponent } from './PostComponentContext';
+
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { setComponent } = usePostComponent();
 
-  const handleItemClick = () => {
+  const handleItemClick = (text, event) => {
+     // 防止默认的链接跳转行为
+     event.preventDefault();
     // 适用于移动视图，点击菜单项后关闭菜单
     setIsMenuOpen(false);
+    switch (text) {
+      case 'Home':
+        setComponent('Home');
+        break;
+      case 'Services':
+        setComponent('Services');
+        break;
+      case 'About':
+        setComponent('About');
+        break;
+      case 'Contact':
+        setComponent('Contact');
+        break;
+      default:
+        break;
+    }
   };
 
   const navItems = [
@@ -31,7 +52,7 @@ const NavBar = () => {
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item, index) => (
               <a key={index} href={item.href} className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
-                 onClick={handleItemClick}>
+                 onClick={(e) => handleItemClick(item.text, e)}>
                 {item.text}
               </a>
             ))}
@@ -53,7 +74,7 @@ const NavBar = () => {
         <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3">
           {navItems.map((item, index) => (
             <a key={index} href={item.href} className="block py-2 px-4 text-sm text-gray-700 bg-gray-200 hover:bg-green-500 hover:text-white"
-               onClick={handleItemClick}>
+            onClick={(e) => handleItemClick(item.text, e)}>
               {item.text}
             </a>
           ))}
