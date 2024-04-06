@@ -58,7 +58,7 @@ const NavBar = () => {
             ))}
           </div>
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="xl:hidden flex items-center">
         <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="outline-none mobile-menu-button">
           {isMenuOpen ? (
             <FontAwesomeIcon icon={faTimes} className="w-6 h-6 text-gray-500 hover:text-green-500" />

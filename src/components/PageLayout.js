@@ -12,7 +12,7 @@ function PageLayout() {
   
   return (
       <main className="flex-grow bg-gray-100">
-        <div className="container mx-auto py-8">
+        <div className="container mx-auto py-8 px-4">
         { showComponent === 'Home'?<HomeComponent />:showComponent === 'Services'?<PostComponent />:showComponent === 'About'?<AboutComponent />:showComponent === 'Contact'?<ContactComponent />:''  }
         </div>
       </main>
