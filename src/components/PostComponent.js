@@ -19,18 +19,17 @@ function PostComponent() {
     fetchData();
   }, []); // 空数组表示此效果只在组件挂载时运行一次
 
-  function formatDate(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year}/${month}/${day}`;
-  }
+  // function formatDate(date) {
+  //   const year = date.getFullYear();
+  //   const month = String(date.getMonth() + 1).padStart(2, "0");
+  //   const day = String(date.getDate()).padStart(2, "0");
+  //   return `${year}/${month}/${day}`;
+  // }
 
   return (
     <div>
-      {data ? (
+      { Array.isArray(data) && data.length !== 0 ? (
         <div className="p-4 rounded-md">
-
           <div className="flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -54,7 +53,13 @@ function PostComponent() {
                     </thead>
                     <tbody>
                       {data.map((item, index) => (
-                        <tr className={(index + 1) % 2 === 0 ? "border-b dark:border-neutral-500" :"border-b border-success-200 bg-success-100 text-neutral-800"}>
+                        <tr key = {index}
+                          className={
+                            (index + 1) % 2 === 0
+                              ? "border-b dark:border-neutral-500"
+                              : "border-b border-success-200 bg-success-100 text-neutral-800"
+                          }
+                        >
                           <td className="whitespace-nowrap px-6 py-4 font-medium">
                             {index + 1}
                           </td>
@@ -77,7 +82,14 @@ function PostComponent() {
           </div>
         </div>
       ) : (
-        <p>Loading data...</p>
+        <div
+          className="grid place-items-center h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
+          role="status"
+        >
+          <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+            Loading...
+          </span>
+        </div>
       )}
     </div>
   );

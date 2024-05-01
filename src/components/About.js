@@ -4,7 +4,7 @@ function AboutComponent() {
     <div>
       <h2 className="text-green-700 text-lg font-semibold mb-4">About</h2>
       <p
-        class="first-line:uppercase first-line:tracking-widest
+        className="first-line:uppercase first-line:tracking-widest
   first-letter:text-7xl first-letter:font-bold first-letter:text-slate-900
   first-letter:mr-3 first-letter:float-left
 "
